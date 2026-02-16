@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lau 68 - Celebración</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #ffffff, #f2f2f2);
+    text-align: center;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: #c0c0c0;
+    margin: 0;
+}
+
+h2 {
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+button {
+    padding: 15px 30px;
+    margin-top: 30px;
+    border: none;
+    background: #c0c0c0;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #a9a9a9;
+}
+
+.section {
+    padding: 80px 20px;
+}
+
+.countdown {
+    font-size: 2rem;
+    margin-top: 20px;
+    color: #c0c0c0;
+}
+
+.details {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.gallery img {
+    width: 250px;
+    margin: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.footer {
+    padding: 40px;
+    font-size: 0.9rem;
+    background: #f8f8f8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Música -->
+<audio autoplay loop>
+  <source src="https://drive.google.com/file/d/1wHnFQdpRGOt4s8ZnkoU9rwGgMmn2Xc05/view?usp=sharing" type="audio/mpeg">
+</audio>
+
+<div class="hero">
+    <h1>Lau</h1>
+    <h2>68 AÑOS</h2>
+    <button onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">
+        Abrir Invitación
+    </button>
+</div>
+
+<div id="info" class="section">
+    <h2>Estás invitado a una noche muy especial ✨</h2>
+    <div class="details">
+        📅 28 de Febrero 2026<br>
+        🕘 21:00 hs<br>
+        📍 Yerbal 2411 4 – CABA
+    </div>
+
+    <div class="countdown" id="countdown"></div>
+
+    <br><br>
+
+    <a href="https://wa.me/" target="_blank">
+        <button>Confirmar Asistencia</button>
+    </a>
+
+    <br><br>
+
+    <a href="https://www.google.com/maps/search/?api=1&query=Yerbal+2411+CABA" target="_blank">
+        <button>Ver Ubicación</button>
+    </a>
+</div>
+
+<div class="section gallery">
+    <h2>Momentos Especiales</h2>
+    <img src="https://drive.google.com/file/d/1CCXYBgB93SK-eYzTs7hxYX3pw6Yf-__s/view">
+    <img src="https://drive.google.com/file/d/1Ey8Ir1m533VFmELZcQzpuukpDUtJi4Sa/view">
+    <img src="https://drive.google.com/file/d/1iWYDDyvR9UCICq099lNoc1zlC6s5o9iF/view">
+</div>
+
+<div class="footer">
+    Una noche para brindar, celebrar y bailar 💃🥂  
+    Dress code: Elegante con brillo ✨
+</div>
+
+<script>
+var countDownDate = new Date("Feb 28, 2026 21:00:00").getTime();
+
+var x = setInterval(function() {
+
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+  document.getElementById("countdown").innerHTML =
+  "Faltan " + days + " días " + hours + " hs " + minutes + " min";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "¡Es hoy! 🥂";
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
