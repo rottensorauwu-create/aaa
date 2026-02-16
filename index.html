@@ -1,143 +1,212 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lau 68 - Celebración</title>
+<title>Lau 68 - Gala Premium</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #ffffff, #f2f2f2);
-    text-align: center;
-    color: #333;
-    overflow-x: hidden;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: radial-gradient(circle at top, #ffffff, #f1f1f1);
+  color: #444;
+  overflow-x: hidden;
 }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* Sparkle background */
+.sparkle {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(2px 2px at 20% 30%, #dcdcdc, transparent),
+                    radial-gradient(2px 2px at 70% 60%, #c0c0c0, transparent),
+                    radial-gradient(1.5px 1.5px at 40% 80%, #e0e0e0, transparent),
+                    radial-gradient(2px 2px at 80% 20%, #d0d0d0, transparent);
+  animation: sparkleMove 10s linear infinite;
+  opacity: 0.6;
 }
 
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    color: #c0c0c0;
-    margin: 0;
+@keyframes sparkleMove {
+  from {transform: translateY(0px);}
+  to {transform: translateY(-50px);}
 }
 
-h2 {
-    font-weight: 300;
-    letter-spacing: 3px;
+/* Intro */
+.intro {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
-button {
-    padding: 15px 30px;
-    margin-top: 30px;
-    border: none;
-    background: #c0c0c0;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 30px;
-    transition: 0.3s;
+.intro h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  color: #c0c0c0;
+  letter-spacing: 5px;
 }
 
-button:hover {
-    background: #a9a9a9;
+.open-btn {
+  margin-top: 40px;
+  padding: 15px 40px;
+  border-radius: 40px;
+  border: 1px solid #c0c0c0;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.4s;
 }
 
+.open-btn:hover {
+  background: #c0c0c0;
+  color: white;
+}
+
+.content {
+  display: none;
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Sections */
 .section {
-    padding: 80px 20px;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.5rem;
+  background: linear-gradient(90deg, #bfbfbf, #ffffff, #bfbfbf);
+  background-size: 200% auto;
+  color: #bfbfbf;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to {background-position: 200% center;}
+}
+
+.subtitle {
+  letter-spacing: 4px;
+  margin-top: -10px;
 }
 
 .countdown {
-    font-size: 2rem;
-    margin-top: 20px;
-    color: #c0c0c0;
+  font-size: 2rem;
+  margin-top: 20px;
+  color: #c0c0c0;
 }
 
-.details {
-    font-size: 1.2rem;
-    line-height: 1.8;
+.btn {
+  margin: 15px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: 1px solid #c0c0c0;
+  background: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #c0c0c0;
+  color: white;
+  transform: scale(1.05);
 }
 
 .gallery img {
-    width: 250px;
-    margin: 15px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  width: 250px;
+  margin: 15px;
+  border-radius: 15px;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.gallery img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .footer {
-    padding: 40px;
-    font-size: 0.9rem;
-    background: #f8f8f8;
+  padding: 40px;
+  font-size: 0.9rem;
+  background: #f9f9f9;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Música -->
-<audio autoplay loop>
-  <source src="https://drive.google.com/file/d/1wHnFQdpRGOt4s8ZnkoU9rwGgMmn2Xc05/view?usp=sharing" type="audio/mpeg">
+<div class="sparkle"></div>
+
+<audio id="music" loop>
+  <source src="Celebration.mp3" type="audio/mpeg">
 </audio>
 
-<div class="hero">
-    <h1>Lau</h1>
-    <h2>68 AÑOS</h2>
-    <button onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">
-        Abrir Invitación
-    </button>
+<div class="intro" id="intro">
+  <h1>Estás Invitado</h1>
+  <button class="open-btn" onclick="startInvitation()">Abrir Invitación</button>
 </div>
 
-<div id="info" class="section">
-    <h2>Estás invitado a una noche muy especial ✨</h2>
-    <div class="details">
-        📅 28 de Febrero 2026<br>
-        🕘 21:00 hs<br>
-        📍 Yerbal 2411 4 – CABA
-    </div>
+<div class="content" id="content">
 
+  <div class="section">
+    <div class="hero-name">Lau</div>
+    <div class="subtitle">68 AÑOS</div>
+    <p>Una noche elegante para celebrar la vida, brindar y bailar ✨</p>
+  </div>
+
+  <div class="section">
+    <p>📅 28 de Febrero 2026</p>
+    <p>🕘 21:00 hs</p>
+    <p>📍 Yerbal 2411 4 – CABA</p>
     <div class="countdown" id="countdown"></div>
 
-    <br><br>
-
-    <a href="https://wa.me/" target="_blank">
-        <button>Confirmar Asistencia</button>
+    <a href="https://wa.me/54911XXXXXXXX" target="_blank">
+      <button class="btn">Confirmar Asistencia</button>
     </a>
-
-    <br><br>
 
     <a href="https://www.google.com/maps/search/?api=1&query=Yerbal+2411+CABA" target="_blank">
-        <button>Ver Ubicación</button>
+      <button class="btn">Ver Ubicación</button>
     </a>
-</div>
+  </div>
 
-<div class="section gallery">
-    <h2>Momentos Especiales</h2>
-    <img src="https://drive.google.com/file/d/1CCXYBgB93SK-eYzTs7hxYX3pw6Yf-__s/view">
-    <img src="https://drive.google.com/file/d/1Ey8Ir1m533VFmELZcQzpuukpDUtJi4Sa/view">
-    <img src="https://drive.google.com/file/d/1iWYDDyvR9UCICq099lNoc1zlC6s5o9iF/view">
-</div>
+  <div class="section gallery">
+    <h2>Momentos que brillan ✨</h2>
+    <img src="FOTO 1.HEIC">
+    <img src="FOTO 2.jpg">
+    <img src="FOTO 3.HEIC">
+  </div>
 
-<div class="footer">
-    Una noche para brindar, celebrar y bailar 💃🥂  
-    Dress code: Elegante con brillo ✨
+  <div class="footer">
+    Dress Code: Elegante con detalles en plateado 🤍<br>
+    Prepárate para una noche inolvidable… ¡Celebración asegurada! 🥂
+  </div>
+
 </div>
 
 <script>
+function startInvitation() {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("content").style.display = "block";
+  document.getElementById("music").play();
+}
+
 var countDownDate = new Date("Feb 28, 2026 21:00:00").getTime();
 
 var x = setInterval(function() {
-
   var now = new Date().getTime();
   var distance = countDownDate - now;
 
@@ -146,7 +215,7 @@ var x = setInterval(function() {
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
   document.getElementById("countdown").innerHTML =
-  "Faltan " + days + " días " + hours + " hs " + minutes + " min";
+    days + " días • " + hours + " hs • " + minutes + " min";
 
   if (distance < 0) {
     clearInterval(x);
